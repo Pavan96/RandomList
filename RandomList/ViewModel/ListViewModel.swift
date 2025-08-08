@@ -22,7 +22,7 @@ class ListViewModel: ObservableObject {
              components = try screenModel.buildCompoents()
             
         } catch {
-            print("Error")
+            print("Error heree")
         }
     }
 }

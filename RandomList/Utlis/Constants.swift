@@ -8,6 +8,8 @@
 import Foundation
 
 struct Constants {
-    static let baseUrl = "http://localhost:3000/"
-    static let list = "\(baseUrl)pet-listing"
+    static let baseUrl = "http://localhost:3000"
+    static let list = "\(baseUrl)/nature-list"
 }
+
+//http://localhost:3000/nature-list

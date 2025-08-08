@@ -22,7 +22,11 @@ class WebService {
         
         let (data, response) = try await URLSession.shared.data(from: url)
         
-        guard let httpResonse = response as? HTTPURLResponse, httpResonse.statusCode == 200 else {
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            let res = (response as? HTTPURLResponse)
+            print("response: \(res)")
+            print("response: \(res?.statusCode)")
+
             throw NetworkError.InvalidHttpResponse
         }
         

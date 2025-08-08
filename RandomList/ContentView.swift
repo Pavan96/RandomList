@@ -8,14 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject private var vm = ListViewModel(service: WebService())
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+       
+        NavigationStack {
+            ScrollView {
+                ForEach(vm.components, id: \.uniqueId) { component in
+                    component.renderView()
+                }
+                .navigationTitle("List")
+            }
+        }.task {
+            await vm.load()
         }
-        .padding()
     }
 }
 

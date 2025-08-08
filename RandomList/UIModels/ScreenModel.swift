@@ -22,14 +22,14 @@ struct ComponentModel: Decodable {
 
 struct ScreenModel: Decodable {
     let pageTitle: String
-    let componets: [ComponentModel]
+    let components: [ComponentModel]
 }
 
 extension ScreenModel {
     
     func buildCompoents() throws -> [UIComponent] {
         var componentArr:[UIComponent] = []
-        for comppennet in self.componets {
+        for comppennet in self.components {
             switch comppennet.type {
                 case .featuredImage:
                 guard let uiModel: FeatureImageUIModel = comppennet.data.decode() else {
