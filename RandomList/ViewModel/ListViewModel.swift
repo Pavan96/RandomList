@@ -9,17 +9,17 @@ import Foundation
 
 @MainActor
 class ListViewModel: ObservableObject {
-    private var service: WebService
+    private var service: NetworkService
     @Published var components: [UIComponent] = []
     
-    init(service: WebService) {
+    init(service: NetworkService) {
         self.service = service
     }
     
     func load() async {
         do {
-             let screenModel = try await service.load(resource: Constants.list)
-             components = try screenModel.buildCompoents()
+            let screenModel = try await service.load(Constants.ScreenResources.petListing)
+            components = try screenModel.buildCompoents()
             
         } catch {
             print("Error heree")

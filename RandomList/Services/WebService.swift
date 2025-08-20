@@ -12,11 +12,11 @@ enum NetworkError: Error {
     case InvalidHttpResponse
 }
 
-class WebService {
+class WebService: NetworkService {
     
-    func load(resource: String) async throws -> ScreenModel {
+    func load(_ resource: String) async throws -> ScreenModel {
         
-        guard let url = URL(string: resource) else {
+        guard let url = Constants.ScreenResources.resource(for: resource) else {
             throw NetworkError.InavlidUrl
         }
         
@@ -24,8 +24,8 @@ class WebService {
         
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             let res = (response as? HTTPURLResponse)
-            print("response: \(res)")
-            print("response: \(res?.statusCode)")
+            print("response: \(String(describing: res))")
+            print("response: \(String(describing: res?.statusCode))")
 
             throw NetworkError.InvalidHttpResponse
         }
@@ -33,3 +33,4 @@ class WebService {
         return try JSONDecoder().decode(ScreenModel.self, from: data)
     }
 }
+

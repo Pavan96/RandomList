@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject private var vm = ListViewModel(service: WebService())
+    @StateObject private var vm = ListViewModel(service: LocalService())
     
     var body: some View {
        
